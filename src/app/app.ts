@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { GRID_CONFIG } from './constants';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class App implements OnInit {
   grid = signal<boolean[][]>([]);
-  gridSize = 50;
-  tickSpeed = 500; // ms
-  initialDensity = 0.25; // %
+  gridRows = GRID_CONFIG.ROWS;
+  gridCols = GRID_CONFIG.COLS;
+  tickSpeed = GRID_CONFIG.TICK_SPEED;
+  initialDensity = GRID_CONFIG.INITIAL_DENSITY;
   intervalId: any;
   isRunning = signal<boolean>(false);
 
@@ -22,9 +24,9 @@ export class App implements OnInit {
 
   initializeGrid() {
     const grid: boolean[][] = [];
-    for (let i = 0; i < this.gridSize; i++) {
+    for (let i = 0; i < this.gridRows; i++) {
       grid[i] = [];
-      for (let j = 0; j < this.gridSize; j++) {
+      for (let j = 0; j < this.gridCols; j++) {
         grid[i][j] = Math.random() < this.initialDensity;
       }
     }
@@ -40,9 +42,9 @@ export class App implements OnInit {
     const currentGrid = this.grid();
     const newGrid: boolean[][] = [];
 
-    for (let i = 0; i < this.gridSize; i++) {
+    for (let i = 0; i < this.gridRows; i++) {
       newGrid[i] = [];
-      for (let j = 0; j < this.gridSize; j++) {
+      for (let j = 0; j < this.gridCols; j++) {
         const neighbours = this.countNeighbors(i, j);
         const isAlive = currentGrid[i][j];
 
@@ -66,7 +68,7 @@ export class App implements OnInit {
       for (let newCol = col - 1; newCol <= col + 1; newCol++) {
         if (newRow === row && newCol === col) continue;
 
-        if (newRow >= 0 && newRow < this.gridSize && newCol >= 0 && newCol < this.gridSize) {
+        if (newRow >= 0 && newRow < this.gridRows && newCol >= 0 && newCol < this.gridCols) {
           if (currentGrid[newRow][newCol]) {
             count++;
           }
