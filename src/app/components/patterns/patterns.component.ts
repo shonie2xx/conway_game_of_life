@@ -7,6 +7,7 @@ import { Pattern, PatternsService } from '../../services/patterns.service';
   imports: [CommonModule],
   templateUrl: `./patterns.component.html`,
   styleUrl: './patterns.component.css',
+  standalone: true,
 })
 export class PatternsModal {
   isOpen = input<boolean>(false);
