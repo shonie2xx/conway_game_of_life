@@ -1,0 +1,115 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-button:hover {
+  background-color: #f0f0f0;
+}
+
+.modal-body {
+  padding: 1rem;
+  overflow-y: auto;
+  max-height: calc(80vh - 80px);
+}
+
+.patterns-container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.pattern-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.pattern-card:hover {
+  border-color: #007acc;
+  box-shadow: 0 2px 8px rgba(0, 122, 204, 0.2);
+  transform: translateY(-1px);
+}
+
+.pattern-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+}
+
+.pattern-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.pattern-row {
+  display: flex;
+  gap: 1px;
+}
+
+.pattern-cell {
+  width: 3px;
+  height: 3px;
+  background-color: #f0f0f0;
+  border: 0.5px solid #ddd;
+}
+
+.pattern-cell.alive {
+  background-color: #333;
+}

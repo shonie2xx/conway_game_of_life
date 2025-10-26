@@ -20,5 +20,24 @@
   <footer class="controls">
     <button (click)="togglePlayPause()">{{ isRunning() ? 'Pause' : 'Play' }}</button>
     <button (click)="reset()">Reset</button>
+    <button (click)="openPatternsModal()">Patterns</button>
+
+    <div class="publish-section">
+      <input
+        type="text"
+        placeholder="Pattern name..."
+        [value]="patternName()"
+        (input)="patternName.set($any($event.target).value)"
+        class="pattern-name-input"
+      />
+      <button (click)="publish()" [disabled]="!patternName().trim()">Publish</button>
+    </div>
   </footer>
+
+  <app-patterns
+    [isOpen]="showPatternsModal()"
+    (patternSelected)="loadPattern($event)"
+    (modalClosed)="closePatternsModal()"
+  >
+  </app-patterns>
 </div>

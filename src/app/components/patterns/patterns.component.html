@@ -1,0 +1,28 @@
+@if (isOpen()) {
+<div class="modal-backdrop" (click)="close()">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Select Pattern</h2>
+      <button class="close-button" (click)="close()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="patterns-container">
+        @for (pattern of patterns(); track pattern._id) {
+        <div class="pattern-card" (click)="selectPattern(pattern)">
+          <h3>{{ pattern.name }}</h3>
+          <div class="pattern-preview">
+            @for (row of pattern.grid; track $index; let i = $index) {
+            <div class="pattern-row">
+              @for (cell of row; track $index; let j = $index) {
+              <div class="pattern-cell" [class.alive]="cell"></div>
+              }
+            </div>
+            }
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+}

@@ -75,3 +75,27 @@ header {
 .controls button:hover {
   background-color: #002f8c;
 }
+
+.controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.publish-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pattern-name-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.pattern-name-input:focus {
+  outline: none;
+  border-color: #1e5ddc;
+}
