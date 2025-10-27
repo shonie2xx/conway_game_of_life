@@ -6,6 +6,13 @@
       <button class="close-button" (click)="close()">&times;</button>
     </div>
     <div class="modal-body">
+      @if (isLoading()) {
+      <p>Loading patterns...</p>
+      } @else if (error()) {
+      <p>{{ error() }}</p>
+      } @else if (patterns().length === 0) {
+      <p>No patterns available</p>
+      } @else {
       <div class="patterns-container">
         @for (pattern of patterns(); track pattern._id) {
         <div class="pattern-card" (click)="selectPattern(pattern)">
@@ -22,6 +29,7 @@
         </div>
         }
       </div>
+      }
     </div>
   </div>
 </div>

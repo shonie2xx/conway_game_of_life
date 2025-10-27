@@ -14,6 +14,8 @@ export class PatternsModal {
   patternSelected = output<Pattern>();
   modalClosed = output<void>();
 
+  isLoading = signal<boolean>(false);
+  error = signal<string | null>(null);
   patterns = signal<Pattern[]>([]);
 
   constructor(private patternsService: PatternsService) {
@@ -25,10 +27,17 @@ export class PatternsModal {
   }
 
   loadPatterns(): void {
+    this.isLoading.set(true);
+    this.error.set(null);
+
     this.patternsService.getAll().subscribe({
-      next: (data) => this.patterns.set(data),
+      next: (data) => {
+        this.patterns.set(data);
+        this.isLoading.set(false);
+      },
       error: (err) => {
-        alert('Failed to load patterns');
+        this.isLoading.set(false);
+        this.error.set('Failed to load patterns');
         console.error('Failed to load patterns', err);
       },
     });
