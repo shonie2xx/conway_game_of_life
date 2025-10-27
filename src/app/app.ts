@@ -14,8 +14,8 @@ import { Pattern, PatternsService } from './services/patterns.service';
 })
 export class App implements OnInit {
   grid = signal<boolean[][]>([]);
-  gridRows = GRID_CONFIG.ROWS;
-  gridCols = GRID_CONFIG.COLS;
+  gridRows: number = GRID_CONFIG.ROWS;
+  gridCols: number = GRID_CONFIG.COLS;
   tickSpeed = GRID_CONFIG.TICK_SPEED;
   initialDensity = GRID_CONFIG.INITIAL_DENSITY;
   intervalId: any;
@@ -86,7 +86,7 @@ export class App implements OnInit {
     return count;
   }
 
-  togglePlayPause() {
+  toggleStartStop() {
     if (this.isRunning()) {
       this.stop();
     } else {
@@ -124,7 +124,7 @@ export class App implements OnInit {
     this.showPatternsModal.set(false);
   }
 
-  loadPattern(pattern: Pattern) {
+  loadPattern(pattern: Omit<Pattern, '_id' | 'createdAt'>) {
     this.stop();
 
     const newGrid: boolean[][] = [];
